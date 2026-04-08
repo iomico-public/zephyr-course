@@ -1,0 +1,64 @@
+menu "LED Subsystem"
+
+config LED_SUBSYSTEM
+	bool "LED Subsystem"
+	default y
+	help
+	  Enable the LED subsystem.
+
+if LED_SUBSYSTEM
+
+choice LED_BLINK_SLEEP_TIME
+	prompt "LED blink sleep time"
+	default LED_BLINK_SLEEP_TIME_MEDIUM
+
+config LED_BLINK_SLEEP_TIME_SLOW
+	bool "2s (slow)"
+
+config LED_BLINK_SLEEP_TIME_MEDIUM
+	bool "1s (medium)"
+
+config LED_BLINK_SLEEP_TIME_FAST
+	bool "500ms (fast)"
+
+endchoice
+
+menu "Advanced LED settings"
+
+config LED_BRIGHTNESS
+	int "LED brightness (0-100)"
+	default 100
+	range 0 100
+	help
+	  Set LED brightness level from 0 (off) to 100 (full).
+
+config LED_FADE_DURATION
+	int "LED fade duration (ms)"
+	default 500
+	range 0 5000
+	help
+	  Duration of LED fade effect in milliseconds.
+
+menu "Expert settings"
+
+config LED_DEBUGGING
+	bool "Enable LED debugging"
+	default n
+	help
+	  Enable debug logging for the LED subsystem.
+
+config LED_CUSTOM_BLINK_PATTERN
+	bool "Custom blink pattern"
+	default n
+	help
+	  Enable a custom blink pattern for the LED.
+
+endmenu # Expert settings
+
+endmenu # Advanced LED settings
+
+endif # LED_SUBSYSTEM
+
+endmenu # LED Subsystem
+
+source "Kconfig.zephyr"
