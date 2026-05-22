@@ -1,0 +1,64 @@
+# Copyright (c) 2019 Nordic Semiconductor ASA
+# SPDX-License-Identifier: Apache-2.0
+
+menuconfig APP_LED_SUBSYSTEM
+bool "LED Subsystem"
+default y
+
+if APP_LED_SUBSYSTEM
+	rsource "deps/Kconfig.deps"
+endif 
+
+
+menu "Board  Configuration"
+	menu "LED WS2812"
+
+	config SAMPLE_LED_UPDATE_DELAY
+		int "Delay between LED updates in ms"
+		default 50
+		range 10 1000
+		help
+		Delay between LED updates in ms.
+
+	config SAMPLE_LED_BRIGHTNESS
+		int "LED brightness"
+		default 16
+		range 1 255
+		help
+		Brightness level of each LED. Defaults to a low value to make
+		it easier to distinguish colors.
+	endmenu
+
+
+
+
+	menu "Options"
+		choice
+			prompt "LED Subsystem"
+			default BLINK_PERIOD_1000MS
+			optional
+
+		config BLINK_PERIOD_1000MS
+			bool "1000 period"
+		config BLINK_PERIOD_500MS
+			bool "500MS period"
+		endchoice
+	
+		config PERIOD_BLINKING
+			bool 
+			default 1000 if BLINK_PERIOD_1000MS
+			default 500 if BLINK_PERIOD_500MS	
+			default 100
+			help
+			Enable blinking pattern. If disabled, the LEDs will be updated
+			with a static pattern.
+	endmenu
+
+endmenu	
+
+
+
+
+menu "zephyr"
+	source "Kconfig.zephyr"
+endmenu

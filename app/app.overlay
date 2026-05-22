@@ -1,0 +1,5 @@
+/ {
+	aliases {
+		app-led = &led_strip;
+	};
+};
