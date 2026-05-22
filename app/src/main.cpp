@@ -24,6 +24,7 @@ int main(void)
 
         led_state = !led_state;
         LOG_INF("LED state: %s", led_state ? "ON" : "OFF");
+        LOG_INF("Iomico course setup complete!");
         k_msleep(SLEEP_TIME_MS);
     }
     return 0;
