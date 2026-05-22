@@ -7,8 +7,11 @@ manifest:
       revision: v4.2.0
       import:
         name-allowlist:
+          - cmsis
           - cmsis_6
           - hal_nxp
           - hal_stm32
-          - hal_nordic
+          - hal_rpi_pico
+          - hal_espressif
+
         path-prefix: deps

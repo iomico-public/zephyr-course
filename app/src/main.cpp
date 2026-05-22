@@ -2,7 +2,7 @@
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
 
-#define SLEEP_TIME_MS 1000
+#define SLEEP_TIME_MS 2000
 
 /* The devicetree node identifier for the "led0" alias. */
 #define LED_NODE DT_ALIAS(led0)
@@ -20,11 +20,17 @@ int main(void)
     if (gpio_pin_configure_dt(&led, GPIO_OUTPUT_ACTIVE) < 0) return 0;
 
     while (1) {
-        if (gpio_pin_toggle_dt(&led) < 0) return 0;
+        for (int i=1; i < 5; ++i) {
 
-        led_state = !led_state;
-        LOG_INF("LED state: %s", led_state ? "ON" : "OFF");
-        k_msleep(SLEEP_TIME_MS);
+            if (gpio_pin_toggle_dt(&led) < 0) return 0;
+            led_state = !led_state;
+            LOG_INF("LED state: %s delay: %d", led_state ? "ON" : "OFF", SLEEP_TIME_MS / i);
+            k_msleep(SLEEP_TIME_MS / i);
+            if (gpio_pin_toggle_dt(&led) < 0) return 0;
+            led_state = !led_state;
+            LOG_INF("LED state: %s delay: %d", led_state ? "ON" : "OFF", SLEEP_TIME_MS / i);
+            k_msleep(SLEEP_TIME_MS / i);
+	}
     }
     return 0;
 }
