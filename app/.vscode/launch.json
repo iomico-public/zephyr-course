@@ -1,0 +1,61 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug STM32 (NUCLEO-F303RE)",
+      "type": "cortex-debug",
+      "request": "launch",
+      "svdFile": "${workspaceFolder}/boards/STM32F303.svd",
+      "preLaunchTask": "Compile STM32",
+      "cwd": "${workspaceFolder}",
+      "executable": "${workspaceFolder}/build-nucleo_f303re/zephyr/zephyr.elf",
+      "servertype": "openocd",
+      "device": "STM32F303RE",
+      "interface": "swd",
+      "gdbPath": "${env:HOME}/zephyr-course/sdk/zephyr-sdk-1.0.1/gnu/arm-zephyr-eabi/bin/arm-zephyr-eabi-gdb",
+      "toolchainPrefix": "arm-zephyr-eabi",
+      "serverpath": "${env:HOME}/zephyr-course/sdk/zephyr-sdk-1.0.1/hosttools/sysroots/x86_64-pokysdk-linux/usr/bin/openocd",
+      "configFiles": [
+        "interface/stlink.cfg",
+        "target/stm32f3x.cfg"
+      ],
+      "runToEntryPoint": "main",
+      "preLaunchCommands": [
+        "monitor reset halt"
+      ],
+      "postLaunchCommands": [
+        "monitor reset halt",
+        "load"
+      ],
+      "showDevDebugOutput": "raw"
+    },
+    {
+      "name": "Debug ESP32 (J-Link)",
+      "type": "cortex-debug",
+      "request": "launch",
+      "svdFile": "${workspaceFolder}/boards/esp32.svd",
+      "preLaunchTask": "Compile ESP32 and start openOCD",
+      "executable": "${workspaceFolder}/build-esp32/zephyr/zephyr.elf",
+      "servertype": "external", // Tells Cortex-Debug NOT to start OpenOCD
+      "gdbTarget": "localhost:3333", // The default GDB port for OpenOCD
+      "cwd": "${workspaceFolder}",
+      "device": "ESP32",
+      "gdbPath": "${env:HOME}/zephyr-course/sdk/zephyr-sdk-1.0.1/gnu/xtensa-espressif_esp32_zephyr-elf/bin/xtensa-espressif_esp32_zephyr-elf-gdb",
+      "rtos": "Zephyr",
+      "overrideLaunchCommands": [
+        "set remote hardware-watchpoint-limit 2",
+        "set remote hardware-breakpoint-limit 2",
+        "target remote localhost:3333",
+        "monitor reset halt",
+        "monitor [target current] configure -event gdb-detach { shutdown }",
+        "maintenance flush register-cache"
+      ],
+      "postStartSessionCommands": [
+        "set remotetimeout 60",
+        "monitor reset halt",
+        "thb main",
+        "continue"
+      ]
+    }
+  ]
+}

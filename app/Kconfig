@@ -1,0 +1,102 @@
+menuconfig LED_SUBSYSTEM
+    bool "LED Subsystem for blinking an LED"
+    default y
+    help
+      Enable/Disable the system for the LED.
+
+if (LED_SUBSYSTEM)
+
+    choice
+	    prompt "LED blink sleep time"
+
+        default BLINK_SLEEP_1000
+        help 
+            Choose the sleep time for the LED blinking. This determines how long the LED stays on and off during each blink cycle.       
+
+        config BLINK_SLEEP_250
+            bool "250 ms (super fast blink)"
+            help
+                A very fast blink rate.              
+
+        config BLINK_SLEEP_500
+            bool "500 ms (fast blink)"
+            help
+                A fast blink rate.
+
+        config BLINK_SLEEP_1000
+            bool "1 s (medium blink)"
+            help
+                A medium blink rate.              
+
+        config BLINK_SLEEP_2000
+            bool "2 s (slow blink)"
+            help
+                A slow blink rate.
+
+        config BLINK_SLEEP_CUSTOM
+            bool "Custom value..."
+            help
+                Allows you to specify a custom sleep time for the LED blinking.   
+    endchoice
+
+    # This input only appears if "Custom value..." is selected above
+    config BLINK_SLEEP_CUSTOM_VALUE
+        int "Enter value (250-3000)"
+        range 250 3000
+        default 250
+        depends on BLINK_SLEEP_CUSTOM 
+
+    config BLINK_SLEEP_MS
+        int
+        default 250 if BLINK_SLEEP_250
+        default 500 if BLINK_SLEEP_500       
+        default 1000 if BLINK_SLEEP_1000
+        default 2000 if BLINK_SLEEP_2000
+        default BLINK_SLEEP_CUSTOM_VALUE if BLINK_SLEEP_CUSTOM
+        help
+            The actual sleep time in milliseconds, determined by the selected blink rate.
+
+    menuconfig ADVANCED_LED_SETTINGS
+        bool "Advanced LED settings"
+        default n
+
+    if (ADVANCED_LED_SETTINGS)
+
+        config LED_BRIGHTNESS
+            int "LED brightness (0-100)"	
+            range 0 100
+            default 50
+            help
+                Set the brightness of the LED. A value of 0 means the LED is off, while 100 means full brightness.
+
+        config LED_FADE_DURATION_MS
+            int "LED Fade Duration (ms)"	
+            range 0 BLINK_SLEEP_MS
+            default 0
+            help
+                The value must be between 1 and the value of BLINK_SLEEP_MS. Not implemented.
+
+        menu "Expert settings"
+            visible if ADVANCED_LED_SETTINGS
+
+            config LED_DEBUG
+                bool "Enable LED debugging"
+                default y
+                help
+                  Enables debug output for the LED subsystem.
+
+            config BLINK_PATTERN
+                bool "Custom blink pattern"
+                default n
+                help
+                  Not implemented
+
+        endmenu
+
+    endif
+
+endif
+
+menu "Zephyr Kernel and Subsystems"
+    source "${ZEPHYR_BASE}/Kconfig.zephyr"
+endmenu

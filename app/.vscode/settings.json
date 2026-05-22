@@ -1,0 +1,41 @@
+{
+    "C_Cpp.default.compileCommands": "${workspaceFolder}/compile_commands.json",
+
+
+    "[kconfig]": {
+        "editor.tabSize": 8,
+        "editor.insertSpaces": false,
+        "editor.autoIndent": "full"
+     },
+    "editor.autoIndent": "full",
+    "editor.autoIndentOnPaste": true,
+
+    "VsCodeTaskButtons.tasks": [
+         {
+              "label": "$(gear) Build",
+              "alignment": "right",
+              "task": "Build",
+              "color": "warning"
+         },     
+         {
+              "label": "$(explorer-view-icon) Compile",
+              "alignment": "right",
+              "task": "Compile"
+         },
+         {
+              "label": "$(zap) Flash",
+              "alignment": "right",
+              "task": "Flash",
+              "color": "warning"
+         },
+         {
+              "label": "$(notebook-delete-cell) Clean",
+              "alignment": "right",
+              "task": "Clean",
+              "color": "error"
+         }
+    ]
+
+
+}
+

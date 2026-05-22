@@ -1,0 +1,165 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Compile",
+      "type": "shell",
+      "command": "${workspaceFolder}/scripts/build.sh",
+      "args": [
+        "${input:board}",
+        "${workspaceFolder}",
+        "incremental"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Build",
+      "type": "shell",
+      "command": "${workspaceFolder}/scripts/build.sh",
+      "args": [
+        "${input:board}",
+        "${workspaceFolder}",
+        "rebuild"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Clean",
+      "type": "shell",
+      "command": "${workspaceFolder}/scripts/clean.sh",
+      "args": [
+        "${input:board}",
+        "${workspaceFolder}"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Flash",
+      "type": "shell",
+      "command": "${workspaceFolder}/scripts/flash.sh",
+      "args": [
+        "${input:board}",
+        "${workspaceFolder}"
+      ],
+      "dependsOn": "Compile",
+      "dependsOrder": "sequence",
+      "problemMatcher": []
+    },
+    {
+      "label": "Compile STM32",
+      "type": "shell",
+      "command": "${workspaceFolder}/scripts/build.sh",
+      "args": [
+        "nucleo_f303re",
+        "${workspaceFolder}",
+        "incremental"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Compile ESP32",
+      "type": "shell",
+      "command": "${workspaceFolder}/scripts/build.sh",
+      "args": [
+        "esp32",
+        "${workspaceFolder}",
+        "incremental"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Build STM32",
+      "type": "shell",
+      "command": "${workspaceFolder}/scripts/build.sh",
+      "args": [
+        "nucleo_f303re",
+        "${workspaceFolder}",
+        "rebuild"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Build ESP32",
+      "type": "shell",
+      "command": "${workspaceFolder}/scripts/build.sh",
+      "args": [
+        "esp32",
+        "${workspaceFolder}",
+        "rebuild"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Clean STM32",
+      "type": "shell",
+      "command": "${workspaceFolder}/scripts/clean.sh",
+      "args": [
+        "nucleo_f303re",
+        "${workspaceFolder}"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Clean ESP32",
+      "type": "shell",
+      "command": "${workspaceFolder}/scripts/clean.sh",
+      "args": [
+        "esp32",
+        "${workspaceFolder}"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Run OpenOCD",
+      "type": "shell",
+      "command": "sudo /usr/bin/openocd -f interface/jlink.cfg  -f target/esp32.cfg -c \"gdb_port 3333\" -c \"adapter speed 5000\"",
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "custom",
+        "pattern": {
+          "regexp": "^.*$"
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "Open On-Chip Debugger",
+          "endsPattern": "3333"
+        }
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      }
+    },
+    {
+      "label": "Compile ESP32 and start openOCD",
+      "dependsOn": [
+        "Compile ESP32",
+        "Run OpenOCD"
+      ],
+      "dependsOrder": "sequence"
+    },
+    {
+      "label": "menuconfig",
+      "type": "shell",
+      "command": "west build -t menuconfig",
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "board",
+      "type": "pickString",
+      "description": "Select board",
+      "options": [
+        "nucleo_f303re",
+        "esp32"
+      ],
+      "default": "nucleo_f303re"
+    }
+  ]
+}
