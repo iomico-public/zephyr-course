@@ -1,0 +1,81 @@
+menu "Zephyr"
+source "Kconfig.zephyr"
+endmenu
+
+menuconfig LED_SUBSYSTEM
+    bool "LED Subsystem"
+    default y
+
+if LED_SUBSYSTEM
+
+config APP_HEARTBEAT_PERIOD_MS
+    int "Period (in milliseconds) of the heartbeat LED"
+    default 500
+    range 100 2000
+
+choice
+    prompt "LED blinking sleep time"
+    default BLINKING_SPEED_MEDIUM
+
+config BLINKING_SPEED_SLOW
+    bool "2s (slow)"
+
+config BLINKING_SPEED_MEDIUM
+    bool "1s (medium)"
+
+config BLINKING_SPEED_FAST
+    bool "500ms (fast)"
+
+config BLINKING_LUDICROUS_SPEED
+    bool "250ms (ludicrous)"
+
+endchoice
+
+config LED_BLINK_PERIOD_MS
+    int
+    default 2000 if BLINKING_SPEED_SLOW
+    default 1000 if BLINKING_SPEED_MEDIUM
+    default 500 if BLINKING_SPEED_FAST
+    default 250 if BLINKING_LUDICROUS_SPEED
+    default 0
+
+menuconfig ADVANCED_LED_SETTINGS
+    bool "Advanced LED settings"
+    default n
+
+if ADVANCED_LED_SETTINGS
+
+config LED_BRIGHTNESS
+    int "LED brightness (0-100)"
+    default 100
+    range 0 100
+    help
+        Brightness power in percentage (0 is off, 100 is full power).
+
+config LED_FADE_DURATION
+    int "LED fade duration (ms)"
+    default 500
+    range 0 5000
+    help
+        Duration of the fade effect in milliseconds.
+
+menu "Expert settings"
+    visible if GPIO
+
+config LED_DEBUGGING
+    bool "Enable LED debugging"
+    default n
+    help
+        Enable LED debugging.
+
+config CUSTOM_BLINK_PATTERN
+    bool "Custom blink pattern"
+    default n
+    help
+        Use a custom blink pattern.
+
+endmenu
+
+endif # ADVANCED_LED_SETTINGS
+
+endif # LED_SUBSYSTEM
