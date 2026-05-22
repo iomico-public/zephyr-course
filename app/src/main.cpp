@@ -2,7 +2,6 @@
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
 
-#define SLEEP_TIME_MS 1000
 
 /* The devicetree node identifier for the "led0" alias. */
 #define LED_NODE DT_ALIAS(led0)
@@ -24,7 +23,7 @@ int main(void)
 
         led_state = !led_state;
         LOG_INF("LED state: %s", led_state ? "ON" : "OFF");
-        k_msleep(SLEEP_TIME_MS);
+        k_msleep(CONFIG_BLINK_SLEEP_TIME_MS);
     }
     return 0;
 }
