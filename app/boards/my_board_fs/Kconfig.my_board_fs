@@ -1,0 +1,3 @@
+config BOARD_MY_BOARD_FS
+	default y
+	select SOC_STM32L476XX

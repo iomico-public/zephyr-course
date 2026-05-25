@@ -1,0 +1,58 @@
+cmake:
+  application:
+    configuration-dir: 'C:/Users/danil/zephyrproject/zephyr/samples/hello_world'
+    source-dir: 'C:/Users/danil/zephyrproject/zephyr/samples/hello_world'
+  board:
+    name: 'my_board_fs'
+    path:
+     - 'C:/Users/danil/zephyrproject/zephyr-course/app/boards/my_board_fs'
+    qualifiers: 'stm32l476xx'
+    revision: ''
+  devicetree:
+    bindings-dirs:
+     - 'C:/Users/danil/zephyrproject/zephyr/dts/bindings'
+    files:
+     - 'C:/Users/danil/zephyrproject/zephyr-course/app/boards/my_board_fs/my_board_fs.dts'
+    include-dirs:
+     - 'C:/Users/danil/zephyrproject/modules/hal/ambiq/dts'
+     - 'C:/Users/danil/zephyrproject/modules/hal/atmel/include'
+     - 'C:/Users/danil/zephyrproject/modules/hal/bouffalolab/include'
+     - 'C:/Users/danil/zephyrproject/modules/hal/bouffalolab/include/zephyr'
+     - 'C:/Users/danil/zephyrproject/modules/hal/gigadevice/include'
+     - 'C:/Users/danil/zephyrproject/modules/hal/microchip/include'
+     - 'C:/Users/danil/zephyrproject/modules/hal/microchip/dts'
+     - 'C:/Users/danil/zephyrproject/modules/hal/nuvoton/dts'
+     - 'C:/Users/danil/zephyrproject/modules/hal/nxp/dts'
+     - 'C:/Users/danil/zephyrproject/modules/hal/stm32/dts'
+     - 'C:/Users/danil/zephyrproject/modules/hal/ti/dts'
+     - 'C:/Users/danil/zephyrproject/zephyr/include'
+     - 'C:/Users/danil/zephyrproject/zephyr/include/zephyr'
+     - 'C:/Users/danil/zephyrproject/zephyr/dts/common'
+     - 'C:/Users/danil/zephyrproject/zephyr/dts/vendor'
+     - 'C:/Users/danil/zephyrproject/zephyr/dts/rx'
+     - 'C:/Users/danil/zephyrproject/zephyr/dts/x86'
+     - 'C:/Users/danil/zephyrproject/zephyr/dts/xtensa'
+     - 'C:/Users/danil/zephyrproject/zephyr/dts/sparc'
+     - 'C:/Users/danil/zephyrproject/zephyr/dts/riscv'
+     - 'C:/Users/danil/zephyrproject/zephyr/dts/posix'
+     - 'C:/Users/danil/zephyrproject/zephyr/dts/arm64'
+     - 'C:/Users/danil/zephyrproject/zephyr/dts/arm'
+     - 'C:/Users/danil/zephyrproject/zephyr/dts/arc'
+     - 'C:/Users/danil/zephyrproject/zephyr/dts'
+  kconfig:
+    files:
+     - 'C:/Users/danil/zephyrproject/zephyr-course/app/boards/my_board_fs/my_board_fs_defconfig'
+     - 'C:/Users/danil/zephyrproject/zephyr/samples/hello_world/prj.conf'
+    user-files:
+     - 'C:/Users/danil/zephyrproject/zephyr/samples/hello_world/prj.conf'
+  toolchain:
+    name: 'zephyr'
+    path: 'C:/Users/danil/zephyr-sdk-1.0.0'
+  zephyr:
+    version: '4.3.99'
+    zephyr-base: 'C:/Users/danil/zephyrproject/zephyr'
+version: '0.1.0'
+west:
+  command: 'C:\Users\danil\zephyrproject\.venv\Scripts\west build -b my_board_fs C:\Users\danil\zephyrproject\zephyr\samples\hello_world --build-dir build_my_board_fs --pristine -- -DBOARD_ROOT=C:/Users/danil/zephyrproject/zephyr-course/app'
+  topdir: 'C:\Users\danil\zephyrproject'
+  version: '1.5.0'
