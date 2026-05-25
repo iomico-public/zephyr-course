@@ -1,5 +1,0 @@
-west:
-  command: C:\Users\danil\zephyrproject\.venv\Scripts\west build -b my_board_fs C:\Users\danil\zephyrproject\zephyr\samples\hello_world
-    --build-dir build_my_board_fs --pristine -- -DBOARD_ROOT=C:/Users/danil/zephyrproject/zephyr-course/app
-  topdir: C:\Users\danil\zephyrproject
-  version: 1.5.0

@@ -1,2 +1,0 @@
-# Load board Kconfig descriptions.
-osource "C:/Users/danil/zephyrproject/zephyr-course/app/boards/my_board_cp/Kconfig.my_board_cp"
