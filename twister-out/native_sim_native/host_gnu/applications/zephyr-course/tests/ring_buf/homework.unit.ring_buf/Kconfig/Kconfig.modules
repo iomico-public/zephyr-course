@@ -1,0 +1,6 @@
+menu "cmsis_6 (/home/lorsi/zephyrproject/deps/modules/hal/cmsis_6)"
+osource "$(ZEPHYR_CMSIS_6_KCONFIG)"
+config ZEPHYR_CMSIS_6_MODULE
+	bool
+	default y
+endmenu

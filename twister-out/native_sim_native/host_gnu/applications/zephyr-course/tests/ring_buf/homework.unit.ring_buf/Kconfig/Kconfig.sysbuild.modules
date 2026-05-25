@@ -1,0 +1,3 @@
+config ZEPHYR_CMSIS_6_MODULE
+   bool
+   default y

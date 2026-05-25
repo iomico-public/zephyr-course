@@ -1,0 +1,47 @@
+cmake:
+  application:
+    configuration-dir: '/home/lorsi/zephyrproject/applications/zephyr-course/tests/ring_buf'
+    source-dir: '/home/lorsi/zephyrproject/applications/zephyr-course/tests/ring_buf'
+  board:
+    name: 'native_sim'
+    path:
+     - '/home/lorsi/zephyrproject/deps/zephyr/boards/native/native_sim'
+    qualifiers: 'native'
+    revision: ''
+  devicetree:
+    bindings-dirs:
+     - '/home/lorsi/zephyrproject/deps/zephyr/dts/bindings'
+    files:
+     - '/home/lorsi/zephyrproject/deps/zephyr/boards/native/native_sim/native_sim.dts'
+    include-dirs:
+     - '/home/lorsi/zephyrproject/deps/zephyr/include'
+     - '/home/lorsi/zephyrproject/deps/zephyr/include/zephyr'
+     - '/home/lorsi/zephyrproject/deps/zephyr/dts/common'
+     - '/home/lorsi/zephyrproject/deps/zephyr/dts/vendor'
+     - '/home/lorsi/zephyrproject/deps/zephyr/dts/rx'
+     - '/home/lorsi/zephyrproject/deps/zephyr/dts/x86'
+     - '/home/lorsi/zephyrproject/deps/zephyr/dts/xtensa'
+     - '/home/lorsi/zephyrproject/deps/zephyr/dts/sparc'
+     - '/home/lorsi/zephyrproject/deps/zephyr/dts/riscv'
+     - '/home/lorsi/zephyrproject/deps/zephyr/dts/posix'
+     - '/home/lorsi/zephyrproject/deps/zephyr/dts/arm64'
+     - '/home/lorsi/zephyrproject/deps/zephyr/dts/arm'
+     - '/home/lorsi/zephyrproject/deps/zephyr/dts/arc'
+     - '/home/lorsi/zephyrproject/deps/zephyr/dts'
+  kconfig:
+    extra-user-files:
+     - '/home/lorsi/zephyrproject/applications/zephyr-course/twister-out/native_sim_native/host_gnu/applications/zephyr-course/tests/ring_buf/homework.unit.ring_buf/twister/testsuite_extra.conf'
+    files:
+     - '/home/lorsi/zephyrproject/deps/zephyr/boards/native/native_sim/native_sim_defconfig'
+     - '/home/lorsi/zephyrproject/applications/zephyr-course/tests/ring_buf/prj.conf'
+     - '/home/lorsi/zephyrproject/applications/zephyr-course/twister-out/native_sim_native/host_gnu/applications/zephyr-course/tests/ring_buf/homework.unit.ring_buf/twister/testsuite_extra.conf'
+     - '/home/lorsi/zephyrproject/applications/zephyr-course/twister-out/native_sim_native/host_gnu/applications/zephyr-course/tests/ring_buf/homework.unit.ring_buf/zephyr/misc/generated/extra_kconfig_options.conf'
+    user-files:
+     - '/home/lorsi/zephyrproject/applications/zephyr-course/tests/ring_buf/prj.conf'
+  toolchain:
+    name: 'host'
+    path: ''
+  zephyr:
+    version: '4.4.0-rc2'
+    zephyr-base: '/home/lorsi/zephyrproject/deps/zephyr'
+version: '0.1.0'

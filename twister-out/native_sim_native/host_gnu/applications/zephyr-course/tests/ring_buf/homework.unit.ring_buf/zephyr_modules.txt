@@ -1,0 +1,1 @@
+"cmsis_6":"/home/lorsi/zephyrproject/deps/modules/hal/cmsis_6":"${ZEPHYR_CMSIS_6_CMAKE_DIR}"
