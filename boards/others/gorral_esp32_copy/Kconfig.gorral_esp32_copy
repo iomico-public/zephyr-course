@@ -1,0 +1,7 @@
+# Copyright (c) 2023-2025 Espressif Systems (Shanghai) Co., Ltd.
+# SPDX-License-Identifier: Apache-2.0
+
+config BOARD_GORRAL_ESP32_COPY
+	select SOC_ESP32_WROVER_E_N4R8
+	select SOC_ESP32_PROCPU if BOARD_GORRAL_ESP32_COPY_ESP32_PROCPU
+	select SOC_ESP32_APPCPU if BOARD_GORRAL_ESP32_COPY_ESP32_APPCPU

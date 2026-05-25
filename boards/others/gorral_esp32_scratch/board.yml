@@ -1,0 +1,6 @@
+board:
+  name: gorral_esp32_scratch
+  full_name: Gorral ESP32 Scratch
+  vendor: espressif
+  socs:
+  - name: esp32
