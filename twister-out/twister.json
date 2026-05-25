@@ -4,7 +4,7 @@
         "zephyr_version":"v4.4.0-rc2",
         "toolchain":"zephyr/gnu",
         "commit_date":"2026-04-02T14:29:04-05:00",
-        "run_date":"2026-05-25T13:47:59+00:00",
+        "run_date":"2026-05-25T13:53:17+00:00",
         "options":{
             "help":null,
             "zephyr_base":null,
@@ -31,13 +31,13 @@
             "arch":"posix",
             "platform":"native_sim/native",
             "path":"../../applications/zephyr-course/tests/ring_buf",
-            "run_id":"81e5fbe71421993cd333ac5934b3df02",
+            "run_id":"3b4e592d9751fb0c369b96dbdeb3747c",
             "runnable":true,
             "retries":0,
             "toolchain":"host/gnu",
             "status":"passed",
             "execution_time":"0.04",
-            "build_time":"5.25",
+            "build_time":"5.21",
             "testcases":[
                 {
                     "identifier":"homework.unit.ring_buf.ring_buf_init.fresh_state",
@@ -82,6 +82,16 @@
                 },
                 {
                     "identifier":"homework.unit.ring_buf.ring_buf_boundaries.peek_null_returns_einval",
+                    "execution_time":"0.00",
+                    "status":"passed"
+                },
+                {
+                    "identifier":"homework.unit.ring_buf.l8_task2_suite.peek_and_pop_on_empty_buffer",
+                    "execution_time":"0.00",
+                    "status":"passed"
+                },
+                {
+                    "identifier":"homework.unit.ring_buf.l8_task2_suite.incorrect_buffer_initialization",
                     "execution_time":"0.00",
                     "status":"passed"
                 }

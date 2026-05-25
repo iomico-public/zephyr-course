@@ -5,23 +5,23 @@
         {
             "filename": "src/ring_buf.c",
             "line_total": 43,
-            "line_covered": 37,
-            "line_percent": 86.0,
+            "line_covered": 43,
+            "line_percent": 100.0,
             "function_total": 7,
             "function_covered": 7,
             "function_percent": 100.0,
             "branch_total": 14,
-            "branch_covered": 10,
-            "branch_percent": 71.4
+            "branch_covered": 14,
+            "branch_percent": 100.0
         }
     ],
     "line_total": 43,
-    "line_covered": 37,
-    "line_percent": 86.0,
+    "line_covered": 43,
+    "line_percent": 100.0,
     "function_total": 7,
     "function_covered": 7,
     "function_percent": 100.0,
     "branch_total": 14,
-    "branch_covered": 10,
-    "branch_percent": 71.4
+    "branch_covered": 14,
+    "branch_percent": 100.0
 }

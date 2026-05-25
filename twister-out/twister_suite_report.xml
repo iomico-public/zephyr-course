@@ -1,5 +1,5 @@
 <testsuites>
-	<testsuite name="homework.unit.ring_buf" time="0.04" timestamp="2026-05-25T07:48:00.522818" tests="9" failures="0" errors="0" skipped="1">
+	<testsuite name="homework.unit.ring_buf" time="0.04" timestamp="2026-05-25T07:53:18.356562" tests="11" failures="0" errors="0" skipped="1">
 		<properties>
 			<property name="version" value="v4.4.0-rc2" />
 			<property name="platform" value="native_sim/native" />
@@ -16,5 +16,7 @@
 		<testcase classname="homework.unit.ring_buf" name="homework.unit.ring_buf.ring_buf_boundaries.pop_null_returns_einval" time="0.00" />
 		<testcase classname="homework.unit.ring_buf" name="homework.unit.ring_buf.ring_buf_boundaries.is_full_after_fill" time="0.00" />
 		<testcase classname="homework.unit.ring_buf" name="homework.unit.ring_buf.ring_buf_boundaries.peek_null_returns_einval" time="0.00" />
+		<testcase classname="homework.unit.ring_buf" name="homework.unit.ring_buf.l8_task2_suite.peek_and_pop_on_empty_buffer" time="0.00" />
+		<testcase classname="homework.unit.ring_buf" name="homework.unit.ring_buf.l8_task2_suite.incorrect_buffer_initialization" time="0.00" />
 	</testsuite>
 </testsuites>

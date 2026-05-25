@@ -140,3 +140,27 @@ ZTEST(ring_buf_boundaries, test_peek_null_returns_einval)
 {
 	zassert_equal(rb_peek(NULL), -EINVAL, "rb_peek(NULL) must return -EINVAL");
 }
+
+
+/*
+ * ============================================================================
+ * Test Suite: l8-task2 suite 
+ *
+ * Invalid operations on empty buffers and ill-formed requests 
+ * ============================================================================
+ */
+
+ZTEST_SUITE(l8_task2_suite, NULL, NULL, before, NULL, NULL);
+
+ZTEST(l8_task2_suite, test_peek_and_pop_on_empty_buffer) {
+	int v;
+	zassert_equal(rb_pop(&v), -ENODATA, "Popping an empty buffer should return -ENODATA");
+	zassert_equal(rb_peek(&v), -ENODATA, "Peeking an empty bufer should return -ENODATA");
+}
+
+ZTEST_SUITE(l8_task2_suite_b, NULL, NULL, NULL, NULL, NULL);
+
+ZTEST(l8_task2_suite, test_incorrect_buffer_initialization) {
+	zassert_equal(rb_init(0), -EINVAL, "Can't initialize buffer with no capacity");
+	zassert_equal(rb_init(RING_BUF_MAX_CAPACITY+1), -EINVAL, "Can't initialize buffer with more than RING_BUF_MAX_CAPACITY elements");
+}

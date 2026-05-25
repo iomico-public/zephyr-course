@@ -364,7 +364,7 @@ SOC_FULL_DIR:PATH=/home/lorsi/zephyrproject/deps/zephyr/soc/native/inf_clock
 TC_NAME:UNINITIALIZED=homework.unit.ring_buf
 
 //No help, variable specified on the command line.
-TC_RUNID:UNINITIALIZED=81e5fbe71421993cd333ac5934b3df02
+TC_RUNID:UNINITIALIZED=3b4e592d9751fb0c369b96dbdeb3747c
 
 //True if toolchain supports libstdc++
 TOOLCHAIN_HAS_GLIBCXX:BOOL=ON
