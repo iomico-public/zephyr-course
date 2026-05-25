@@ -1,0 +1,21 @@
+/ {
+leds {
+compatible = "gpio-leds";
+
+app_led0: app_led_0 {
+gpios = <&gpio0 2 GPIO_ACTIVE_HIGH>;
+label = "App LED";
+};
+};
+
+led_sensor0: led_sensor_0 {
+compatible = "gorral,led-sensor";
+status = "okay";
+led-gpios = <&gpio0 2 GPIO_ACTIVE_HIGH>;
+};
+
+aliases {
+app-led = &app_led0;
+led-sensor0 = &led_sensor0;
+};
+};

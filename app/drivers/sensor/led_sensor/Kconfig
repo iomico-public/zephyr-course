@@ -1,0 +1,7 @@
+config LED_SENSOR
+bool "Simple LED sensor driver"
+depends on SENSOR
+select GPIO
+default y
+help
+  Simple sensor-style driver that controls an on-board LED.

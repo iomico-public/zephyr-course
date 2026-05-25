@@ -11,4 +11,6 @@ manifest:
           - hal_nxp
           - hal_stm32
           - hal_nordic
+          - hal_espressif
+          - hal_xtensa
         path-prefix: deps

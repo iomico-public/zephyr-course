@@ -1,0 +1,6 @@
+board:
+  name: gorral_esp32_copy
+  full_name: Gorral ESP32 Copy
+  vendor: espressif
+  socs:
+  - name: esp32
