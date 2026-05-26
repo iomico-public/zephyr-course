@@ -1,0 +1,11 @@
+description: Simple LED sensor used for Zephyr driver development homework
+
+compatible: "gorral,led-sensor"
+
+include: base.yaml
+
+properties:
+  led-gpios:
+    type: phandle-array
+    required: true
+    description: GPIO connected to the LED controlled by this sensor driver.

@@ -1,0 +1,22 @@
+identifier: gorral_esp32_copy/esp32/procpu
+name: Gorral ESP32 Copy PROCPU
+type: mcu
+arch: xtensa
+toolchain:
+  - zephyr
+supported:
+  - adc
+  - dac
+  - gpio
+  - i2c
+  - i2s
+  - watchdog
+  - uart
+  - nvs
+  - pwm
+  - dac
+  - spi
+  - counter
+  - entropy
+  - input
+vendor: espressif
