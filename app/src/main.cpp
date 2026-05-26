@@ -1,6 +1,7 @@
 #include <zephyr/kernel.h>
 #include <zephyr/drivers/sensor.h>
 #include <zephyr/device.h>
+#include <led_sensor/led_sensor.h>
 
 int main(void)
 {
@@ -11,12 +12,13 @@ int main(void)
         return -ENODEV;
     }
 
+    /* Task 2: API custom - cambia el mensaje del driver */
+    led_sensor_set_message(dev, "Hola desde main!");
+
     while (1) {
-        /* fetch → enciende el LED */
         sensor_sample_fetch(dev);
         k_sleep(K_MSEC(500));
 
-        /* channel_get → apaga el LED */
         struct sensor_value val;
         sensor_channel_get(dev, SENSOR_CHAN_ALL, &val);
         k_sleep(K_MSEC(500));

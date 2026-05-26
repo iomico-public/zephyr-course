@@ -5,6 +5,13 @@
 #include <zephyr/drivers/gpio.h>
 #include <zephyr/logging/log.h>
 #include "../../include/led_sensor/led_sensor.h"
+#include <string.h>
+
+/* Config struct - privada, solo el driver la necesita */
+struct led_sensor_config {
+    struct gpio_dt_spec led_gpio;
+};
+
 
 LOG_MODULE_REGISTER(led_sensor, CONFIG_SENSOR_LOG_LEVEL);
 
@@ -17,7 +24,7 @@ static int led_sensor_sample_fetch(const struct device *dev,
 
     gpio_pin_set_dt(&cfg->led_gpio, 1);
     data->led_state = true;
-    LOG_INF("LED encendido (fetch)");
+    LOG_INF("LED ON - %s", data->message);
     return 0;
 }
 
@@ -36,6 +43,23 @@ static int led_sensor_channel_get(const struct device *dev,
     LOG_INF("LED apagado (channel_get)");
     return 0;
 }
+
+int led_sensor_set_message(const struct device *dev, const char *msg)
+{
+    struct led_sensor_data *data = dev->data;
+    strncpy(data->message, msg, sizeof(data->message) - 1);
+    LOG_INF("Mensaje actualizado: %s", data->message);
+    return 0;
+}
+
+int led_sensor_set_toggle_count(const struct device *dev, int count)
+{
+    struct led_sensor_data *data = dev->data;
+    data->toggle_count = count;
+    LOG_INF("toggle_count seteado a %d", count);
+    return 0;
+}
+
 
 /* --- init --- */
 static int led_sensor_init(const struct device *dev)

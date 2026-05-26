@@ -3,15 +3,20 @@
 
 #include <zephyr/device.h>
 
-/* Estructura de datos dinámica (runtime) */
 struct led_sensor_data {
-    bool led_state;       /* estado actual del LED */
-    int  toggle_count;    /* parámetro para API custom de Task 2 */
+    bool led_state;
+    int  toggle_count;
+    char message[64];
 };
 
-/* Estructura de configuración estática */
-struct led_sensor_config {
-    struct gpio_dt_spec led_gpio;
-};
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+int led_sensor_set_message(const struct device *dev, const char *msg);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* LED_SENSOR_H */
