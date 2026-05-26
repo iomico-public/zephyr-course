@@ -1,0 +1,50 @@
+/dts-v1/;
+
+#include <espressif/esp32c6/esp32c6_wroom_n8.dtsi>
+#include "../our_board/esp32c6_devkitc_hpcore-pinctrl.dtsi"
+#include <espressif/partitions_0x0_default.dtsi>
+
+/ {
+    model = "my_board";
+	compatible = "mutuma,my_board";
+
+    aliases {
+        led0 = &red_led;
+        app-led = &red_led;
+        led1 = &blue_led;
+    };
+
+    chosen {
+        zephyr,sram = &sramhp;
+		zephyr,flash = &flash0;
+		zephyr,code-partition = &slot0_partition;
+        zephyr,console = &uart0;
+        zephyr,shell-uart = &uart0;
+    };
+
+    leds {
+        compatible = "gpio-leds";
+
+        red_led: led_0 {
+            gpios = <&gpio0 2 GPIO_ACTIVE_HIGH>;
+            label = "Red LED";
+        };
+
+        blue_led: led_1 {
+            gpios = <&gpio0 11 GPIO_ACTIVE_HIGH>;
+            label = "Green LED";
+        };
+    };
+};
+
+&gpio0 {
+	status = "okay";
+};
+
+&uart0 {
+    status = "okay";
+    current-speed = <115200>;
+    pinctrl-0 = <&uart0_default>;
+    pinctrl-1 = <&uart0_sleep>;
+    pinctrl-names = "default", "sleep";
+};

@@ -1,0 +1,6 @@
+board:
+  name: my_board
+  full_name: My board from scratch
+  vendor: mutuma
+  socs:
+  - name: esp32c6

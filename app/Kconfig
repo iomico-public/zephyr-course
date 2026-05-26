@@ -1,0 +1,15 @@
+source "Kconfig.zephyr"
+rsource "drivers/our_driver/Kconfig"
+
+menuconfig LED_HEARTBEAT
+    bool "LED heartbeat application"
+    default y
+
+if LED_HEARTBEAT
+
+config APP_HEARTBEAT_PERIOD_MS
+    int "Heartbeat period (ms)"
+    range 100 2000
+    default 500
+    
+endif # LED_HEARTBEAT
