@@ -14,6 +14,7 @@ extern "C" {
 #endif
 
 int led_sensor_set_message(const struct device *dev, const char *msg);
+int led_sensor_set_toggle_count(const struct device *dev, int count);
 
 #ifdef __cplusplus
 }
