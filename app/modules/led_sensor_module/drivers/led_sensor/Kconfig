@@ -1,0 +1,6 @@
+menuconfig LED_SENSOR
+    bool "On-board LED Sensor Driver"
+    default y
+    select GPIO
+    help
+      Enable the on-board LED sensor driver.
