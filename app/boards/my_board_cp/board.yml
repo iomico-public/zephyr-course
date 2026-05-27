@@ -1,0 +1,6 @@
+board:
+  name: my_board_cp
+  full_name: My Custom Board CP
+  vendor: st
+  socs:
+    - name: stm32l476xx

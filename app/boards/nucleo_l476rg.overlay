@@ -1,0 +1,7 @@
+/ {
+    led_sensor_0: led_sensor {
+        compatible = "iomico,led-sensor";
+        gpios = <&gpioa 5 GPIO_ACTIVE_HIGH>;
+        status = "okay";
+    };
+};

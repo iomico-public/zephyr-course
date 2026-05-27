@@ -1,0 +1,11 @@
+description: On-board LED used as a sensor device
+
+compatible: "iomico,led-sensor"
+
+include: base.yaml
+
+properties:
+  gpios:
+    type: phandle-array
+    required: true
+    description: GPIO pin connected to the LED
