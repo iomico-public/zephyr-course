@@ -1,0 +1,5 @@
+west:
+  command: /home/enovo/zephyrproject/.venv/bin/west build -t menuconfig --build-dir
+    l4_build
+  topdir: /home/enovo/zephyrproject
+  version: 1.5.0

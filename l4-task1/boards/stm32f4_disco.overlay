@@ -1,0 +1,13 @@
+/ {
+    leds {
+        compatible = "gpio-leds";
+        led0: led_0 {
+            gpios = <&gpiod 13 GPIO_ACTIVE_HIGH>;
+            label = "Orange LED";
+        };
+    };
+
+    aliases {
+        app-led = &led0;
+    };
+};

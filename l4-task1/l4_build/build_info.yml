@@ -1,0 +1,51 @@
+cmake:
+  application:
+    configuration-dir: '/home/enovo/zephyrproject/zephyr-course/l4-task1'
+    source-dir: '/home/enovo/zephyrproject/zephyr-course/l4-task1'
+  board:
+    name: 'stm32f4_disco'
+    path:
+     - '/home/enovo/zephyrproject/zephyr/boards/st/stm32f4_disco'
+    qualifiers: 'stm32f407xx'
+    revision: ''
+  devicetree:
+    bindings-dirs:
+     - '/home/enovo/zephyrproject/zephyr/dts/bindings'
+    files:
+     - '/home/enovo/zephyrproject/zephyr/boards/st/stm32f4_disco/stm32f4_disco.dts'
+     - '/home/enovo/zephyrproject/zephyr-course/l4-task1/boards/stm32f4_disco.overlay'
+    include-dirs:
+     - '/home/enovo/zephyrproject/deps/modules/hal/stm32/dts'
+     - '/home/enovo/zephyrproject/zephyr/include'
+     - '/home/enovo/zephyrproject/zephyr/include/zephyr'
+     - '/home/enovo/zephyrproject/zephyr/dts/common'
+     - '/home/enovo/zephyrproject/zephyr/dts/vendor'
+     - '/home/enovo/zephyrproject/zephyr/dts/rx'
+     - '/home/enovo/zephyrproject/zephyr/dts/x86'
+     - '/home/enovo/zephyrproject/zephyr/dts/xtensa'
+     - '/home/enovo/zephyrproject/zephyr/dts/sparc'
+     - '/home/enovo/zephyrproject/zephyr/dts/riscv'
+     - '/home/enovo/zephyrproject/zephyr/dts/posix'
+     - '/home/enovo/zephyrproject/zephyr/dts/arm64'
+     - '/home/enovo/zephyrproject/zephyr/dts/arm'
+     - '/home/enovo/zephyrproject/zephyr/dts/arc'
+     - '/home/enovo/zephyrproject/zephyr/dts'
+    user-files:
+     - '/home/enovo/zephyrproject/zephyr-course/l4-task1/boards/stm32f4_disco.overlay'
+  kconfig:
+    files:
+     - '/home/enovo/zephyrproject/zephyr/boards/st/stm32f4_disco/stm32f4_disco_defconfig'
+     - '/home/enovo/zephyrproject/zephyr-course/l4-task1/prj.conf'
+    user-files:
+     - '/home/enovo/zephyrproject/zephyr-course/l4-task1/prj.conf'
+  toolchain:
+    name: 'zephyr'
+    path: '/home/enovo/zephyr-sdk-1.0.0'
+  zephyr:
+    version: '4.3.99'
+    zephyr-base: '/home/enovo/zephyrproject/zephyr'
+version: '0.1.0'
+west:
+  command: '/home/enovo/zephyrproject/.venv/bin/west build -t menuconfig --build-dir l4_build'
+  topdir: '/home/enovo/zephyrproject'
+  version: '1.5.0'

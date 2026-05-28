@@ -1,0 +1,2 @@
+# Load board Kconfig descriptions.
+osource "/home/enovo/zephyrproject/zephyr/boards/st/stm32f4_disco/Kconfig.stm32f4_disco"

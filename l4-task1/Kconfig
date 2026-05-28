@@ -1,0 +1,8 @@
+config APP_HEARTBEAT_PERIOD_MS
+    int "Heartbeat LED period (ms)"
+    default 500
+    range 100 2000
+    help
+      Period of the heartbeat LED blink in milliseconds.
+
+source "Kconfig"

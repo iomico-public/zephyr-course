@@ -1,0 +1,2 @@
+"cmsis_6":"/home/enovo/zephyrproject/deps/modules/hal/cmsis_6":"${ZEPHYR_CMSIS_6_CMAKE_DIR}"
+"hal_stm32":"/home/enovo/zephyrproject/deps/modules/hal/stm32":"/home/enovo/zephyrproject/deps/modules/hal/stm32"
