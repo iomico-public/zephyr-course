@@ -1,0 +1,6 @@
+menuconfig LED_SUBSYSTEM
+    bool "LED Subsystem"
+    default y
+
+source "Kconfig.zephyr"
+rsource "drivers/sarche_driver/Kconfig"

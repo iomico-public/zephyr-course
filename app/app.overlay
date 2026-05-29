@@ -1,0 +1,18 @@
+/ {
+    aliases {
+        app-led = &my_led;
+    };
+
+    leds {
+        compatible = "gpio-leds";
+
+        my_led: led_0 {
+            gpios = <&gpiob 0 GPIO_ACTIVE_HIGH>;
+        };
+    };
+        sarche_driver0: sarche_driver {
+        compatible = "sarche,driver";
+        status = "okay";
+        led-gpios = <&gpiob 0 GPIO_ACTIVE_HIGH>;
+    };
+};

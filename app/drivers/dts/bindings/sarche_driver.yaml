@@ -1,0 +1,9 @@
+description: LED driver just for fun
+compatible: "sarche,driver"
+include: base.yaml
+
+properties:
+  led-gpios:
+    type: phandle-array
+    required: true
+    description: GPIO pin to control the LED

@@ -1,30 +1,40 @@
 #include <zephyr/drivers/gpio.h>
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
+#include <zephyr/drivers/sensor.h>
+#include <sarche_driver.h>
+
 
 #define SLEEP_TIME_MS 1000
-
-/* The devicetree node identifier for the "led0" alias. */
-#define LED_NODE DT_ALIAS(led0)
-
-static const struct gpio_dt_spec led = GPIO_DT_SPEC_GET(LED_NODE, gpios);
 
 LOG_MODULE_REGISTER(main, LOG_LEVEL_INF);
 
 int main(void)
 {
-    bool led_state = true;
+	const struct device *led_sensor = DEVICE_DT_GET_ANY(sarche_driver);
 
-    if (!gpio_is_ready_dt(&led)) return 0;
+	if (!device_is_ready(led_sensor)) {
+		LOG_ERR("LED sensor device not ready");
+		return 0;
+	}
 
-    if (gpio_pin_configure_dt(&led, GPIO_OUTPUT_ACTIVE) < 0) return 0;
+	LOG_INF("LED sensor device ready");
 
-    while (1) {
-        if (gpio_pin_toggle_dt(&led) < 0) return 0;
+	int counter = 0;
 
-        led_state = !led_state;
-        LOG_INF("LED state: %s", led_state ? "ON" : "OFF");
-        k_msleep(SLEEP_TIME_MS);
-    }
-    return 0;
+	while (1) {
+		sarche_set_user_param(led_sensor, counter++);
+
+		LOG_INF("Turning LED ON...");
+		sensor_sample_fetch(led_sensor);
+		k_msleep(SLEEP_TIME_MS);
+
+		
+		struct sensor_value val = {0, 0};
+		LOG_INF("Turning LED OFF...");
+		sensor_channel_get(led_sensor, SENSOR_CHAN_LIGHT, &val);
+		k_msleep(SLEEP_TIME_MS);
+	}
+
+	return 0;
 }

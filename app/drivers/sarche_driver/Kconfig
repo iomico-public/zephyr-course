@@ -1,0 +1,4 @@
+config SARCHE_DRIVER
+    bool "sarche driver"
+    depends on DT_HAS_SARCHE_DRIVER_ENABLED
+    default y
