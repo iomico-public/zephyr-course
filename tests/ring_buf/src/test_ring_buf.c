@@ -43,11 +43,12 @@ ZTEST(ring_buf_init, test_fresh_state)
 
 ZTEST(ring_buf_init, test_reinit_clears_state)
 {
-	/* TODO(l8-task1): Push a value, call rb_init(4) again, then
-	 * verify the buffer is empty and count is 0.
-	 * See TEST_SPEC.md "Suite ring_buf_init" #2.
-	 */
-	ztest_test_skip();
+	rb_push(99);
+	zassume_false(rb_push(99), "Pushing a single value after reset shouldn't fail");
+	zassume_equal(rb_count(), 1, "We can assume the buffer is not empty after a push");
+	rb_init(4);
+	zassert_true(rb_is_empty(), "Fresh buffer must be empty");
+	zassert_equal(rb_count(), 0, "Fresh buffer count must be 0");
 }
 
 /*
@@ -64,25 +65,37 @@ ZTEST(ring_buf_push_pop, test_single_push_pop)
 	/* TODO(l8-task1): rb_push(42), rb_pop(&v) -> v == 42, buffer empty after.
 	 * See TEST_SPEC.md "Suite ring_buf_push_pop" #1.
 	 */
-	ztest_test_skip();
+	int v;
+	zassert_false(rb_push(42), "Normal push");
+	zassert_false(rb_pop(&v),  "Normal pop");
+	zassert_equal(42, v, "Pushed value must be retrievable by pop");
 }
 
 ZTEST(ring_buf_push_pop, test_fifo_order)
 {
-	/* TODO(l8-task1): rb_push(1), rb_push(2), rb_push(3); pop three times
-	 * and verify the values come out as 1, 2, 3 in that order.
-	 * See TEST_SPEC.md "Suite ring_buf_push_pop" #2.
-	 */
-	ztest_test_skip();
+
+        const int PUSH_VALUES[] = {1, 2, 3};
+	const int N_VALUES = sizeof(PUSH_VALUES)/sizeof(PUSH_VALUES[0]);
+	int v;
+
+	for(int i=0; i<N_VALUES; i++) {
+		zexpect_true(rb_push(PUSH_VALUES[i]) == 0, "Push command did not return 0 when it should"); 
+	}
+	for(int i=0; i<N_VALUES; i++) {
+		rb_pop(&v);
+		zassert_equal(PUSH_VALUES[i], v, "FIFO order not preserved: expected [%d] but got [%d]", PUSH_VALUES[i], v);
+	}
+	zassert_true(rb_is_empty(), "Ring Buff not reporting empty after emptying it");
 }
 
 ZTEST(ring_buf_push_pop, test_push_full_returns_enospc)
 {
-	/* TODO(l8-task1): Fill the buffer to its capacity of 4, then push
-	 * one more value -> -ENOSPC.
-	 * See TEST_SPEC.md "Suite ring_buf_push_pop" #3.
-	 */
-	ztest_test_skip();
+	for (int i = 1; i <= 4; i++) {
+		zassert_equal(rb_push(i), 0, "Push %d should succeed", i);
+	}
+	zassert_true(rb_is_full(), "Buffer must be full after 4 pushes");
+	zassert_equal(rb_push(99), -ENOSPC, "Push into full buffer must return -ENOSPC");
+	zassert_equal(rb_count(), 4, "Count must still be 4 after rejected push");
 }
 
 /*
@@ -96,25 +109,58 @@ ZTEST_SUITE(ring_buf_boundaries, NULL, NULL, before, NULL, NULL);
 
 ZTEST(ring_buf_boundaries, test_peek_does_not_consume)
 {
-	/* TODO(l8-task1): rb_push(7); rb_peek(&v) -> v == 7; rb_peek(&v) again
-	 * -> v == 7; rb_count() still == 1.
-	 * See TEST_SPEC.md "Suite ring_buf_boundaries" #1.
-	 */
-	ztest_test_skip();
+	int v;
+
+	zassume_equal(rb_push(7), 0, "Push should succeed");
+
+	zassert_equal(rb_peek(&v), 0, "First peek must return 0");
+	zassert_equal(v, 7, "First peek must yield 7");
+
+	zassert_equal(rb_peek(&v), 0, "Second peek must return 0");
+	zassert_equal(v, 7, "Second peek must still yield 7");
+
+	zassert_equal(rb_count(), 1, "Peek must not consume the element");
 }
 
 ZTEST(ring_buf_boundaries, test_pop_null_returns_einval)
 {
-	/* TODO(l8-task1): rb_pop(NULL) -> -EINVAL.
-	 * See TEST_SPEC.md "Suite ring_buf_boundaries" #2.
-	 */
-	ztest_test_skip();
+	zassert_equal(rb_pop(NULL), -EINVAL, "rb_pop(NULL) must return -EINVAL");
 }
 
 ZTEST(ring_buf_boundaries, test_is_full_after_fill)
 {
-	/* TODO(l8-task1): push 4 values -> rb_is_full() == true, rb_count() == 4.
-	 * See TEST_SPEC.md "Suite ring_buf_boundaries" #3.
-	 */
-	ztest_test_skip();
+	for (int i = 1; i <= 4; i++) {
+		zassert_equal(rb_push(i), 0, "Push %d should succeed", i);
+	}
+	zassert_true(rb_is_full(), "Buffer must report full after 4 pushes");
+	zassert_equal(rb_count(), 4, "Count must be 4 after filling the buffer");
+}
+
+ZTEST(ring_buf_boundaries, test_peek_null_returns_einval)
+{
+	zassert_equal(rb_peek(NULL), -EINVAL, "rb_peek(NULL) must return -EINVAL");
+}
+
+
+/*
+ * ============================================================================
+ * Test Suite: l8-task2 suite 
+ *
+ * Invalid operations on empty buffers and ill-formed requests 
+ * ============================================================================
+ */
+
+ZTEST_SUITE(l8_task2_suite, NULL, NULL, before, NULL, NULL);
+
+ZTEST(l8_task2_suite, test_peek_and_pop_on_empty_buffer) {
+	int v;
+	zassert_equal(rb_pop(&v), -ENODATA, "Popping an empty buffer should return -ENODATA");
+	zassert_equal(rb_peek(&v), -ENODATA, "Peeking an empty bufer should return -ENODATA");
+}
+
+ZTEST_SUITE(l8_task2_suite_b, NULL, NULL, NULL, NULL, NULL);
+
+ZTEST(l8_task2_suite, test_incorrect_buffer_initialization) {
+	zassert_equal(rb_init(0), -EINVAL, "Can't initialize buffer with no capacity");
+	zassert_equal(rb_init(RING_BUF_MAX_CAPACITY+1), -EINVAL, "Can't initialize buffer with more than RING_BUF_MAX_CAPACITY elements");
 }

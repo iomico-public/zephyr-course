@@ -1,0 +1,24 @@
+# Available runners configured by board.cmake.
+runners:
+- native
+
+# Default flash runner if --runner is not given.
+flash-runner: native
+
+# Default debug runner if --runner is not given.
+debug-runner: native
+
+# Common runner configuration values.
+config:
+  board_dir: /home/lorsi/zephyrproject/deps/zephyr/boards/native/native_sim
+  # Build outputs:
+  elf_file: zephyr.elf
+  exe_file: zephyr.exe
+  # Host tools:
+  gdb: /usr/bin/gdb
+
+# Runner specific arguments
+args:
+  native:
+    []
+
