@@ -4,81 +4,55 @@
 
 LOG_MODULE_REGISTER(main, LOG_LEVEL_INF);
 
-/* Fetch the onboard green LED using Zephyr's standard lowercase identifier */
-static const struct gpio_dt_spec led = GPIO_DT_SPEC_GET(DT_ALIAS(led0), gpios);
+/* Fallback default definition if menuconfig options are hidden */
+#ifndef CONFIG_BLINK_SLEEP_TIME_MS
+#define CONFIG_BLINK_SLEEP_TIME_MS 1000
+#endif
 
-/* Fixed period window for our software bit-bang cycle (10 milliseconds) */
-#define SOFT_PWM_PERIOD_MS 10
+/* 
+ * Target the board's native pre-configured green LED alias directly.
+ * No custom app.overlay required!
+ */
+static const struct gpio_dt_spec led = GPIO_DT_SPEC_GET(DT_ALIAS(led1), gpios);
 
 int main(void)
 {
     int ret;
+    bool led_state = false;
 
+    // Check if the onboard GPIO controller peripheral is fully online
     if (!gpio_is_ready_dt(&led)) {
-        LOG_ERR("Error: Onboard LED GPIO device is not ready.");
+        LOG_ERR("Hardware Error: Onboard GPIO controller for led1 is not ready.");
         return -EIO;
     }
 
+    // Configure the target pin as a standard output, initializing it to INACTIVE (off)
     ret = gpio_pin_configure_dt(&led, GPIO_OUTPUT_INACTIVE);
     if (ret < 0) {
-        LOG_ERR("Error: Failed to configure LED pin (error %d).", ret);
+        LOG_ERR("Error: Failed to configure LED pin framework (code %d).", ret);
         return ret;
     }
 
-    /* Fallback default boundaries if 'Advanced LED settings' are unchecked */
-    uint32_t max_brightness_pct = 100;
-    int total_fade_duration_ms = 500;
-
-    #ifdef CONFIG_LED_BRIGHTNESS
-        max_brightness_pct = CONFIG_LED_BRIGHTNESS;
-    #endif
-
-    #ifdef CONFIG_LED_FADE_DURATION_MS
-        total_fade_duration_ms = CONFIG_LED_FADE_DURATION_MS;
-    #endif
-
-    /* Calculate how many timing loop intervals fit inside the requested fade duration window */
-    int total_steps = total_fade_duration_ms / SOFT_PWM_PERIOD_MS;
-    if (total_steps < 1) {
-        total_steps = 1;
-    }
-
-    LOG_INF("Software-Dimming Started: Brightness Max = %d%%, Fade Window = %d ms", 
-            max_brightness_pct, total_fade_duration_ms);
+    LOG_INF("Overlay-free GPIO LED blink application initialized on FRDM-MCXN236!");
+    LOG_INF("Blink interval synchronized to: %d ms", CONFIG_BLINK_SLEEP_TIME_MS);
 
     while (1) {
-        /* Phase 1: Smoothly fade UP toward max brightness target */
-        for (int step = 0; step <= total_steps; step++) {
-            /* Compute the dynamic duty cycle scaling percentage for this step */
-            uint32_t dynamic_pct = (max_brightness_pct * step) / total_steps;
-            int on_time = (SOFT_PWM_PERIOD_MS * dynamic_pct) / 100;
-            int off_time = SOFT_PWM_PERIOD_MS - on_time;
-
-            if (on_time > 0) {
-                gpio_pin_set_dt(&led, 1);
-                k_msleep(on_time);
-            }
-            if (off_time > 0) {
-                gpio_pin_set_dt(&led, 0);
-                k_msleep(off_time);
-            }
+        // Toggle our logic state tracker variable
+        led_state = !led_state;
+        
+        // Drive the physical pin high or low logically
+        ret = gpio_pin_set_dt(&led, (int)led_state);
+        if (ret < 0) {
+            LOG_ERR("GPIO Error: Failed to toggle pin value (code %d).", ret);
+            return ret;
         }
 
-        /* Phase 2: Smoothly fade DOWN back to completely off */
-        for (int step = total_steps; step >= 0; step++) {
-            uint32_t dynamic_pct = (max_brightness_pct * step) / total_steps;
-            int on_time = (SOFT_PWM_PERIOD_MS * dynamic_pct) / 100;
-            int off_time = SOFT_PWM_PERIOD_MS - on_time;
+        #if IS_ENABLED(CONFIG_ENABLE_LED_DEBUGGING)
+            LOG_INF("Debug Flag: LED toggled to state %d.", led_state);
+        #endif
 
-            if (on_time > 0) {
-                gpio_pin_set_dt(&led, 1);
-                k_msleep(on_time);
-            }
-            if (off_time > 0) {
-                gpio_pin_set_dt(&led, 0);
-                k_msleep(off_time);
-            }
-        }
+        // Apply your custom hierarchical sleep time dynamically from Kconfig
+        k_msleep(CONFIG_BLINK_SLEEP_TIME_MS);
     }
 
     return 0;
