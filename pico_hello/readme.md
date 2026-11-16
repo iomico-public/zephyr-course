@@ -108,5 +108,4 @@ python3 -m serial.tools.miniterm /dev/ttyACM1 115200
 
 Because your C code loops and updates every single second, your terminal screen will immediately begin filling up with:
 PICO_W_HELLO_SUCCESSFUL!
-Let me know if the fresh folder layout successfully compiled and if you see PICO_W_HELLO_SUCCESSFUL! scrolling on your screen!
 

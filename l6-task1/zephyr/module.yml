@@ -1,0 +1,6 @@
+name: custom_led_module
+build:
+  cmake: .
+  kconfig: Kconfig
+  settings:
+    dts_root: .
