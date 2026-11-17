@@ -1,0 +1,14 @@
+NSI_NATIVE=1
+NSI_AR:=/usr/bin/ar
+NSI_BUILD_OPTIONS:=-m32 -msse2 -mfpmath=sse -Werror -fprofile-arcs -ftest-coverage -fno-inline
+NSI_BUILD_PATH:=/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyr-course-stm32-c562re/twister-out/native_sim_native/host_gnu/zephyr-course-stm32-c562re/tests/ring_buf/homework.unit.ring_buf/zephyr/NSI
+NSI_CC:=/usr/bin/gcc
+NSI_OBJCOPY:=/usr/bin/objcopy
+NSI_EMBEDDED_CPU_SW:=/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyr-course-stm32-c562re/twister-out/native_sim_native/host_gnu/zephyr-course-stm32-c562re/tests/ring_buf/homework.unit.ring_buf/zephyr/zephyr.elf 
+NSI_EXE:=/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyr-course-stm32-c562re/twister-out/native_sim_native/host_gnu/zephyr-course-stm32-c562re/tests/ring_buf/homework.unit.ring_buf/zephyr/zephyr.exe
+NSI_EXTRA_SRCS:=
+NSI_LINK_OPTIONS:=-m32 -lgcov -T /home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/boards/native/common/natsim_linker_script.ld
+NSI_EXTRA_LIBS:=
+NSI_PATH:=/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/scripts/native_simulator/
+NSI_N_CPUS:=1
+NSI_LOCALIZE_OPTIONS:=--localize-symbol=CONFIG_* 

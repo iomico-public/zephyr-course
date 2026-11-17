@@ -1,0 +1,59 @@
+cmake:
+  application:
+    configuration-dir: '/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyr-course-stm32-c562re/tests/ring_buf'
+    source-dir: '/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyr-course-stm32-c562re/tests/ring_buf'
+  board:
+    name: 'native_sim'
+    path:
+     - '/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/boards/native/native_sim'
+    qualifiers: 'native'
+    revision: ''
+  devicetree:
+    bindings-dirs:
+     - '/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/dts/bindings'
+    files:
+     - '/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/boards/native/native_sim/native_sim.dts'
+    include-dirs:
+     - '/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/modules/hal/ambiq/dts'
+     - '/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/modules/hal/atmel/include'
+     - '/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/modules/hal/bouffalolab/include'
+     - '/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/modules/hal/bouffalolab/include/zephyr'
+     - '/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/modules/hal/gigadevice/include'
+     - '/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/modules/hal/infineon/dts'
+     - '/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/modules/hal/microchip/include'
+     - '/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/modules/hal/microchip/dts'
+     - '/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/modules/hal/nuvoton/dts'
+     - '/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/modules/hal/nxp/dts'
+     - '/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/modules/hal/stm32/dts'
+     - '/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/include'
+     - '/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/include/zephyr'
+     - '/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/dts/common'
+     - '/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/dts/vendor'
+     - '/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/dts/tricore'
+     - '/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/dts/rx'
+     - '/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/dts/x86'
+     - '/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/dts/xtensa'
+     - '/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/dts/sparc'
+     - '/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/dts/riscv'
+     - '/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/dts/posix'
+     - '/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/dts/arm64'
+     - '/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/dts/arm'
+     - '/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/dts/arc'
+     - '/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/dts'
+  kconfig:
+    extra-user-files:
+     - '/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyr-course-stm32-c562re/twister-out/native_sim_native/host_gnu/zephyr-course-stm32-c562re/tests/ring_buf/homework.unit.ring_buf/twister/testsuite_extra.conf'
+    files:
+     - '/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/boards/native/native_sim/native_sim_defconfig'
+     - '/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyr-course-stm32-c562re/tests/ring_buf/prj.conf'
+     - '/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyr-course-stm32-c562re/twister-out/native_sim_native/host_gnu/zephyr-course-stm32-c562re/tests/ring_buf/homework.unit.ring_buf/twister/testsuite_extra.conf'
+     - '/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyr-course-stm32-c562re/twister-out/native_sim_native/host_gnu/zephyr-course-stm32-c562re/tests/ring_buf/homework.unit.ring_buf/zephyr/misc/generated/extra_kconfig_options.conf'
+    user-files:
+     - '/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyr-course-stm32-c562re/tests/ring_buf/prj.conf'
+  toolchain:
+    name: 'host'
+    path: ''
+  zephyr:
+    version: '4.5.99'
+    zephyr-base: '/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr'
+version: '0.1.0'

@@ -1,0 +1,20 @@
+empty_file.o: \
+ /home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/misc/empty_file.c \
+ /home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/boards/native/native_sim/native_sim.dts \
+ /home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/dts/common/freq.h \
+ /home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/dts/posix/posix.dtsi \
+ /home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/dts/common/skeleton.dtsi \
+ /home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/dts/common/mem.h \
+ /home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/include/zephyr/dt-bindings/adc/adc.h \
+ /home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/include/zephyr/dt-bindings/dt-util.h \
+ /home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/include/zephyr/sys/util_macro.h \
+ /home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/include/zephyr/sys/util_internal.h \
+ /home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/include/zephyr/sys/util_loops.h \
+ /home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/include/zephyr/sys/util_listify.h \
+ /home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/include/zephyr/sys/util_internal_is_eq.h \
+ /home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/include/zephyr/sys/util_internal_util_inc.h \
+ /home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/include/zephyr/sys/util_internal_util_dec.h \
+ /home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/include/zephyr/sys/util_internal_util_x2.h \
+ /home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/include/zephyr/dt-bindings/display/panel.h \
+ /home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/include/zephyr/dt-bindings/i2c/i2c.h \
+ /home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/include/zephyr/dt-bindings/gpio/gpio.h

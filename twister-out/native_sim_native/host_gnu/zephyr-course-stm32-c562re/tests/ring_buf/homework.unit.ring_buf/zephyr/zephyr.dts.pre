@@ -1,0 +1,401 @@
+# 0 "/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/misc/empty_file.c"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/boards/native/native_sim/native_sim.dts" 1
+
+
+
+
+
+
+/dts-v1/;
+# 1 "/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/dts/common/freq.h" 1 3 4
+# 9 "/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/boards/native/native_sim/native_sim.dts" 2
+# 1 "/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/dts/posix/posix.dtsi" 1 3 4
+
+
+
+
+
+
+# 1 "/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/dts/common/skeleton.dtsi" 1 3 4
+# 9 "/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/dts/common/skeleton.dtsi" 3 4
+/ {
+ #address-cells = <1>;
+ #size-cells = <1>;
+
+ chosen {};
+
+ aliases {};
+};
+# 8 "/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/dts/posix/posix.dtsi" 2 3 4
+# 1 "/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/dts/common/mem.h" 1 3 4
+# 9 "/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/dts/posix/posix.dtsi" 2 3 4
+# 10 "/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/boards/native/native_sim/native_sim.dts" 2
+# 1 "/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/include/zephyr/dt-bindings/adc/adc.h" 1 3 4
+# 9 "/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/include/zephyr/dt-bindings/adc/adc.h" 3 4
+# 1 "/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/include/zephyr/dt-bindings/dt-util.h" 1 3 4
+# 19 "/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/include/zephyr/dt-bindings/dt-util.h" 3 4
+# 1 "/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/include/zephyr/sys/util_macro.h" 1 3 4
+# 34 "/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/include/zephyr/sys/util_macro.h" 3 4
+# 1 "/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/include/zephyr/sys/util_internal.h" 1 3 4
+# 18 "/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/include/zephyr/sys/util_internal.h" 3 4
+# 1 "/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/include/zephyr/sys/util_loops.h" 1 3 4
+# 1465 "/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/include/zephyr/sys/util_loops.h" 3 4
+# 1 "/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/include/zephyr/sys/util_listify.h" 1 3 4
+# 1466 "/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/include/zephyr/sys/util_loops.h" 2 3 4
+# 19 "/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/include/zephyr/sys/util_internal.h" 2 3 4
+# 203 "/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/include/zephyr/sys/util_internal.h" 3 4
+# 1 "/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/include/zephyr/sys/util_internal_is_eq.h" 1 3 4
+# 204 "/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/include/zephyr/sys/util_internal.h" 2 3 4
+# 234 "/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/include/zephyr/sys/util_internal.h" 3 4
+# 1 "/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/include/zephyr/sys/util_internal_util_inc.h" 1 3 4
+# 235 "/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/include/zephyr/sys/util_internal.h" 2 3 4
+
+
+# 1 "/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/include/zephyr/sys/util_internal_util_dec.h" 1 3 4
+# 238 "/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/include/zephyr/sys/util_internal.h" 2 3 4
+
+
+# 1 "/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/include/zephyr/sys/util_internal_util_x2.h" 1 3 4
+# 241 "/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/include/zephyr/sys/util_internal.h" 2 3 4
+# 35 "/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/include/zephyr/sys/util_macro.h" 2 3 4
+# 20 "/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/include/zephyr/dt-bindings/dt-util.h" 2 3 4
+# 10 "/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/include/zephyr/dt-bindings/adc/adc.h" 2 3 4
+# 11 "/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/boards/native/native_sim/native_sim.dts" 2
+# 1 "/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/include/zephyr/dt-bindings/display/panel.h" 1 3 4
+# 12 "/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/boards/native/native_sim/native_sim.dts" 2
+# 1 "/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/include/zephyr/dt-bindings/i2c/i2c.h" 1 3 4
+# 13 "/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/boards/native/native_sim/native_sim.dts" 2
+# 1 "/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/include/zephyr/dt-bindings/gpio/gpio.h" 1 3 4
+# 14 "/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/boards/native/native_sim/native_sim.dts" 2
+
+/ {
+ compatible = "zephyr,posix";
+ model = "Native Sim Board";
+
+ chosen {
+  zephyr,console = &uart0;
+  zephyr,shell-uart = &uart0;
+  zephyr,uart-mcumgr = &uart0;
+  zephyr,flash = &flash0;
+  zephyr,entropy = &rng;
+  zephyr,flash-controller = &flashcontroller0;
+  zephyr,display = &sdl_dc;
+  zephyr,canbus = &can_loopback0;
+  zephyr,code-partition = &slot0_partition;
+  zephyr,bt-hci = &bt_hci_userchan;
+  zephyr,touch = &input_sdl_touch;
+ };
+
+ aliases {
+  codec0 = &audio_codec;
+  dmic0 = &dmic0;
+  eeprom-0 = &eeprom0;
+  fuel-gauge0 = &fuel_gauge0;
+  i2c-0 = &i2c0;
+  i2s-node0 = &i2s_rxtx;
+  i2s-codec-tx = &i2s_tx0;
+  spi-0 = &spi0;
+  led0 = &led0;
+  rtc = &rtc;
+ };
+
+ leds: leds {
+  compatible = "gpio-leds";
+
+  led0: led_0 {
+   gpios = <&gpio0 0 (0 << 0)>;
+   label = "Green LED";
+  };
+ };
+
+ cpus {
+  timebase-frequency = <(((1) * 1000) * 1000)>;
+  #address-cells = <1>;
+  #size-cells = <0>;
+
+  cpu0: cpu@0 {
+   compatible = "zephyr,native-sim-cpu";
+   reg = <0>;
+  };
+ };
+
+ flashcontroller0: flash-controller@0 {
+  compatible = "zephyr,sim-flash";
+  reg = <0x00000000 ((2048) * 1024)>;
+  ranges;
+
+  #address-cells = <1>;
+  #size-cells = <1>;
+  erase-value = <0xff>;
+
+  flash0: flash@0 {
+   compatible = "soc-nv-flash";
+   reg = <0x00000000 ((2048) * 1024)>;
+   ranges = <0x0 0x0 ((2048) * 1024)>;
+   erase-block-size = <4096>;
+   write-block-size = <1>;
+   #address-cells = <1>;
+   #size-cells = <1>;
+   status = "okay";
+
+   partitions {
+    ranges;
+    #address-cells = <1>;
+    #size-cells = <1>;
+
+    boot_partition: partition@0 {
+     compatible = "zephyr,mapped-partition";
+     reg = <0x00000000 0x0000c000>;
+     label = "mcuboot";
+    };
+
+    slot0_partition: partition@c000 {
+     compatible = "zephyr,mapped-partition";
+     reg = <0x0000c000 0x00069000>;
+     label = "image-0";
+    };
+
+    slot1_partition: partition@75000 {
+     compatible = "zephyr,mapped-partition";
+     reg = <0x00075000 0x00069000>;
+     label = "image-1";
+    };
+
+    scratch_partition: partition@de000 {
+     compatible = "zephyr,mapped-partition";
+     reg = <0x000de000 0x0001e000>;
+     label = "image-scratch";
+    };
+
+    storage_partition: partition@fc000 {
+     compatible = "zephyr,mapped-partition";
+     reg = <0x000fc000 0x00004000>;
+     label = "storage";
+    };
+   };
+  };
+ };
+
+ eeprom0: eeprom {
+  compatible = "zephyr,sim-eeprom";
+  size = <((32) * 1024)>;
+  status = "okay";
+ };
+
+ fuel_gauge0: fuel_gauge {
+  compatible = "zephyr,native-linux-fuel-gauge";
+
+  path = "/sys/class/power_supply/BAT0";
+  status = "disabled";
+ };
+
+ otp0: otp {
+  compatible = "zephyr,otp-emul";
+  size = <((1) * 1024)>;
+  status = "okay";
+ };
+
+ uart0: uart {
+  compatible = "zephyr,native-pty-uart";
+
+
+
+  current-speed = <0>;
+  status = "okay";
+ };
+
+ uart1: uart_1 {
+  compatible = "zephyr,native-pty-uart";
+
+
+
+  current-speed = <0>;
+  status = "disabled";
+ };
+
+ rng: rng {
+  compatible = "zephyr,native-sim-rng";
+  status = "okay";
+ };
+
+ counter0: counter {
+  compatible = "zephyr,native-sim-counter";
+  #counter-capture-cells = <2>;
+  status = "okay";
+ };
+
+ gpio0: gpio_emul {
+  compatible = "zephyr,gpio-emul";
+  rising-edge;
+  falling-edge;
+  high-level;
+  low-level;
+  gpio-controller;
+  #gpio-cells = <2>;
+  status = "okay";
+ };
+
+ zephyr_udc0: udc0 {
+  compatible = "zephyr,native-posix-udc";
+ };
+
+ sdl_dc: sdl_dc {
+  compatible = "zephyr,sdl-dc";
+  pixel-format = <(0x1 << 3)>;
+  height = <240>;
+  width = <320>;
+ };
+
+ input_sdl_touch: input-sdl-touch {
+  compatible = "zephyr,input-sdl-touch";
+  display = <&sdl_dc>;
+ };
+
+ can_loopback0: can_loopback0 {
+  compatible = "zephyr,can-loopback";
+  status = "okay";
+ };
+
+ can0: can {
+  compatible = "zephyr,native-linux-can";
+
+
+
+  host-interface = "zcan0";
+  status = "disabled";
+ };
+
+ rtc: rtc {
+  compatible = "zephyr,rtc-emul";
+  alarms-count = <2>;
+  status = "okay";
+ };
+
+ adc0: adc {
+  compatible = "zephyr,adc-emul";
+  nchannels = <2>;
+  #io-channel-cells = <1>;
+  status = "okay";
+ };
+
+ audio_codec: audio_codec {
+  compatible = "zephyr,dummy-codec";
+  status = "okay";
+ };
+
+ dmic0: dmic0 {
+  compatible = "zephyr,native-sim-dmic";
+  status = "okay";
+ };
+
+ i2s_rx0: i2s_rx {
+  compatible = "zephyr,native-sim-i2s";
+  stream-direction = "rx";
+  status = "okay";
+ };
+
+ i2s_rxtx: i2s_rxtx {
+  compatible = "zephyr,native-sim-i2s";
+  stream-direction = "both";
+  status = "okay";
+ };
+
+ i2s_tx0: i2s_tx {
+  compatible = "zephyr,native-sim-i2s";
+  stream-direction = "tx";
+  status = "okay";
+ };
+
+ dma: dma {
+  compatible = "zephyr,dma-emul";
+  #dma-cells = <1>;
+  stack-size = <4096>;
+ };
+
+ bt_hci_userchan: bt_hci_userchan {
+  compatible = "zephyr,bt-hci-userchan";
+  status = "okay";
+ };
+
+ performance-states {
+  pstate_0: pstate_0 {
+   compatible = "zephyr,native-sim-pstate";
+   load-threshold = <50>;
+   pstate-id = <0>;
+  };
+
+  pstate_1: pstate_1 {
+   compatible = "zephyr,native-sim-pstate";
+   load-threshold = <20>;
+   pstate-id = <1>;
+  };
+
+  pstate_2: pstate_2 {
+   compatible = "zephyr,native-sim-pstate";
+   load-threshold = <0>;
+   pstate-id = <2>;
+  };
+ };
+
+ zeth0: zeth0 {
+  compatible = "zephyr,native-tap";
+  host-interface = "zeth";
+  zephyr,random-mac-address;
+  zephyr,mac-address-prefix = [00 00 5e 00 53];
+  status = "okay";
+
+  ptp_clock: ptp_clock {
+   compatible = "zephyr,native-ptp-clock";
+   status = "okay";
+  };
+ };
+
+ i2c_host: i2c {
+  compatible = "zephyr,native-linux-i2c";
+
+  path = "/dev/i2c-0";
+  #address-cells = <1>;
+  #size-cells = <0>;
+  status = "disabled";
+ };
+
+ i2c0: i2c@100 {
+  compatible = "zephyr,i2c-emul-controller";
+  reg = <0x100 4>;
+  clock-frequency = <100000>;
+  #address-cells = <1>;
+  #size-cells = <0>;
+  #forward-cells = <1>;
+  status = "okay";
+ };
+
+ spi0: spi@200 {
+  compatible = "zephyr,spi-emul-controller";
+  reg = <0x200 4>;
+  clock-frequency = <50000000>;
+  #address-cells = <1>;
+  #size-cells = <0>;
+  status = "okay";
+ };
+
+ espi0: espi@300 {
+  compatible = "zephyr,espi-emul-controller";
+  reg = <0x300 4>;
+  #address-cells = <1>;
+  #size-cells = <0>;
+  status = "okay";
+ };
+
+ mspi0: mspi@400 {
+  compatible = "zephyr,mspi-emul-controller";
+  reg = <0x400 4>;
+  clock-frequency = <250000000>;
+  #address-cells = <1>;
+  #size-cells = <0>;
+  status = "okay";
+ };
+};
+# 0 "<command-line>" 2
+# 1 "/home/mirafra/Girish/GITHUB/Zephyr_Workspace/zephyrproject/zephyr/misc/empty_file.c"

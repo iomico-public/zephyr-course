@@ -1,0 +1,59 @@
+*** Booting Zephyr OS build v4.5.0-2961-g7cd4b562b30a ***
+RunID started: aea4190295976737f6ac4f8822438eef
+Running TESTSUITE ring_buf_boundaries
+===================================================================
+START - test_pop_null_returns_einval
+[00:00:00.000,000] <err> ring_buf: value pointer is NULL
+ PASS - test_pop_null_returns_einval in 0.000 seconds
+===================================================================
+START - test_is_full_after_fill
+ PASS - test_is_full_after_fill in 0.000 seconds
+===================================================================
+START - test_peek_does_not_consume
+ PASS - test_peek_does_not_consume in 0.000 seconds
+===================================================================
+TESTSUITE ring_buf_boundaries succeeded
+Running TESTSUITE ring_buf_init
+===================================================================
+START - test_fresh_state
+ PASS - test_fresh_state in 0.000 seconds
+===================================================================
+START - test_reinit_clears_state
+ PASS - test_reinit_clears_state in 0.000 seconds
+===================================================================
+TESTSUITE ring_buf_init succeeded
+Running TESTSUITE ring_buf_push_pop
+===================================================================
+START - test_single_push_pop
+ PASS - test_single_push_pop in 0.000 seconds
+===================================================================
+START - test_push_full_returns_enospc
+[00:00:00.000,000] <wrn> ring_buf: buffer full (capacity=4)
+ PASS - test_push_full_returns_enospc in 0.000 seconds
+===================================================================
+START - test_fifo_order
+ PASS - test_fifo_order in 0.000 seconds
+===================================================================
+TESTSUITE ring_buf_push_pop succeeded
+
+------ TESTSUITE SUMMARY START ------
+
+SUITE PASS - 100.00% [ring_buf_boundaries]: pass = 3, fail = 0, skip = 0, total = 3 duration = 0.000 seconds
+ - PASS - [ring_buf_boundaries.test_is_full_after_fill] duration = 0.000 seconds
+ - PASS - [ring_buf_boundaries.test_peek_does_not_consume] duration = 0.000 seconds
+ - PASS - [ring_buf_boundaries.test_pop_null_returns_einval] duration = 0.000 seconds
+
+SUITE PASS - 100.00% [ring_buf_init]: pass = 2, fail = 0, skip = 0, total = 2 duration = 0.000 seconds
+ - PASS - [ring_buf_init.test_fresh_state] duration = 0.000 seconds
+ - PASS - [ring_buf_init.test_reinit_clears_state] duration = 0.000 seconds
+
+SUITE PASS - 100.00% [ring_buf_push_pop]: pass = 3, fail = 0, skip = 0, total = 3 duration = 0.000 seconds
+ - PASS - [ring_buf_push_pop.test_fifo_order] duration = 0.000 seconds
+ - PASS - [ring_buf_push_pop.test_push_full_returns_enospc] duration = 0.000 seconds
+ - PASS - [ring_buf_push_pop.test_single_push_pop] duration = 0.000 seconds
+
+------ TESTSUITE SUMMARY END ------
+
+===================================================================
+RunID: aea4190295976737f6ac4f8822438eef
+PROJECT EXECUTION SUCCESSFUL
