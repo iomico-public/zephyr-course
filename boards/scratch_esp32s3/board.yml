@@ -1,0 +1,6 @@
+board:
+  name: scratch_esp32s3
+  full_name: ESP32-S3-DevKitC
+  vendor: espressif
+  socs:
+  - name: esp32s3
