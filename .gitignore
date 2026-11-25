@@ -4,3 +4,4 @@ build
 # West files
 .west
 deps
+build/
