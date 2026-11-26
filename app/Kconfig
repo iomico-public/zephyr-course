@@ -1,8 +1,1 @@
-config APP_HEARTBEAT_PERIOD_MS
-	int "Heartbeat LED blink period (ms)"
-	range 100 2000
-	default 500
-	help
-	  Sleep duration in milliseconds between heartbeat LED toggles.
-
 source "Kconfig.zephyr"

@@ -1,0 +1,11 @@
+description: Simple on-board LED sensor driver
+
+compatible: "custom,led-sensor"
+
+include: sensor-device.yaml
+
+properties:
+  gpios:
+    type: phandle-array
+    required: true
+    description: GPIO pin driving the on-board LED

@@ -1,0 +1,1 @@
+rsource "drivers/sensor/led_sensor/Kconfig"
