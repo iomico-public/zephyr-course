@@ -1,0 +1,13 @@
+/ {
+    aliases {
+        external-led = &ext_led_node;
+    };
+
+    leds {
+        compatible = "gpio-leds";
+        ext_led_node: led_gpio_15 {
+            gpios = <&gpio0 15 GPIO_ACTIVE_HIGH>;
+            label = "External Breadboard LED";
+        };
+    };
+};

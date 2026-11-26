@@ -1,0 +1,6 @@
+board:
+  name: custom_mcxn236
+  full_name: Custom MCXN236 Board
+  vendor: nxp
+  socs:
+    - name: mcxn236

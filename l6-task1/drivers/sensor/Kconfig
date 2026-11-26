@@ -1,0 +1,7 @@
+menuconfig CUSTOM_LED_SENSOR
+    bool "Custom LED Sensor Driver"
+    default y
+    depends on DT_HAS_CUSTOM_LED_SENSOR_ENABLED
+	select SENSOR
+    help
+      Enable the Custom LED Sensor Driver.

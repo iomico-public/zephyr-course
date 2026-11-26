@@ -1,0 +1,68 @@
+# Requirement: menuconfig for LED Subsystem (top-level toggle)
+menuconfig LED_SUBSYSTEM
+    bool "LED Subsystem"
+    default y
+
+if LED_SUBSYSTEM
+
+    # Requirement: choice for blink sleep time (250ms, 500ms, 1s, 2s)
+    choice
+        prompt "LED blink sleep time"
+        default BLINK_SLEEP_1000MS
+
+    config BLINK_SLEEP_250MS
+        bool "Fast (250ms)"
+
+    config BLINK_SLEEP_500MS
+        bool "Medium-Fast (500ms)"
+
+    config BLINK_SLEEP_1000MS
+        bool "Medium (1s)"
+
+    config BLINK_SLEEP_2000MS
+        bool "Slow (2s)"
+    endchoice
+
+    # Requirement: Hidden int symbol to compute value based on choice selection
+    config BLINK_SLEEP_TIME_MS
+        int
+        default 250 if BLINK_SLEEP_250MS
+        default 500 if BLINK_SLEEP_500MS
+        default 1000 if BLINK_SLEEP_1000MS
+        default 2000 if BLINK_SLEEP_2000MS
+        default 0
+
+    # Requirement: menuconfig for Advanced LED settings
+    menuconfig ADVANCED_LED_SETTINGS
+        bool "Advanced LED settings"
+        default n
+
+    if ADVANCED_LED_SETTINGS
+        # Requirement: range for brightness (0-100) and default (100)
+        config LED_BRIGHTNESS
+            int "LED brightness (0-100)"
+            range 0 100
+            default 100
+
+        # Requirement: range for fade (0-5000) and default (500)
+        config LED_FADE_DURATION_MS
+            int "LED fade duration (ms)"
+            range 0 5000
+            default 500
+    endif # ADVANCED_LED_SETTINGS
+
+    # Requirement: menu with 'visible if' for Expert settings
+    # We use ADVANCED_LED_SETTINGS so it matches the hierarchy when advanced is turned on
+    menu "Expert settings"
+        visible if ADVANCED_LED_SETTINGS
+
+        config ENABLE_LED_DEBUGGING
+            bool "Enable LED debugging"
+            default n
+
+        config CUSTOM_BLINK_PATTERN
+            bool "Custom blink pattern"
+            default n
+    endmenu
+
+endif # LED_SUBSYSTEM

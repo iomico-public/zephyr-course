@@ -1,0 +1,13 @@
+common:
+  tags:
+    - unit
+    - ring_buf
+    - ztest
+    - homework
+
+tests:
+  homework.unit.ring_buf:
+    platform_allow: 
+     - native_sim
+     - qemu_x86
+    timeout: 60

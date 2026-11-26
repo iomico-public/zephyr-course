@@ -1,0 +1,13 @@
+identifier: my_mcxn236
+name: Custom MCXN236 From Scratch Board
+type: mcu
+arch: arm
+ram: 256
+flash: 1024
+toolchain:
+  - zephyr
+  - gnuarmemb
+supported:
+  - gpio
+  - serial
+vendor: nxp

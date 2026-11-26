@@ -1,0 +1,12 @@
+
+# 1. Pull in the entire default Zephyr configuration tree 
+# (This brings back symbols like GPIO, SERIAL, CONSOLE, etc.)
+source "Kconfig.zephyr"
+config APP_HEARTBEAT_PERIOD_MS
+    int "Heartbeat period interval (in ms)"
+    range 100 2000
+    default 500
+    help 
+        Controls the flashing delay time for the app-led indicator pin.
+
+
