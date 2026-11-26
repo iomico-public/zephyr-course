@@ -1,109 +1,49 @@
 #include <zephyr/kernel.h>
-#include <zephyr/device.h>
-#include <zephyr/drivers/sensor.h>
-#include <zephyr/shell/shell.h>
-#include <drivers/led_sensor.h>
+#include <zephyr/logging/log.h>
 
-static const struct device *const led_dev = DEVICE_DT_GET_ONE(custom_led_sensor);
+LOG_MODULE_REGISTER(kernel_sched, LOG_LEVEL_INF);
 
-static int cmd_sensor_fetch(const struct shell *sh, size_t argc, char **argv)
+#define STACK_SIZE 1024
+
+void t_low_fn(void *p1, void *p2, void *p3)
 {
-	int ret;
-
-	ARG_UNUSED(argc);
-	ARG_UNUSED(argv);
-
-	if (!device_is_ready(led_dev)) {
-		shell_error(sh, "Device %s not ready", led_dev->name);
-		return -ENODEV;
+	while (1) {
+		LOG_INF("T_LOW running");
+		k_sleep(K_MSEC(300));
 	}
-
-	ret = sensor_sample_fetch(led_dev);
-	if (ret < 0) {
-		shell_error(sh, "sensor_sample_fetch failed (%d)", ret);
-		return ret;
-	}
-
-	shell_print(sh, "Sample fetched (LED turned ON)");
-	return 0;
 }
 
-static int cmd_sensor_read(const struct shell *sh, size_t argc, char **argv)
+void t_med_fn(void *p1, void *p2, void *p3)
 {
-	struct sensor_value val;
-	int ret;
-
-	ARG_UNUSED(argc);
-	ARG_UNUSED(argv);
-
-	if (!device_is_ready(led_dev)) {
-		shell_error(sh, "Device %s not ready", led_dev->name);
-		return -ENODEV;
+	while (1) {
+		LOG_INF("T_MED running");
+		k_sleep(K_MSEC(200));
 	}
-
-	ret = sensor_channel_get(led_dev, SENSOR_CHAN_ALL, &val);
-	if (ret < 0) {
-		shell_error(sh, "sensor_channel_get failed (%d)", ret);
-		return ret;
-	}
-
-	shell_print(sh, "Channel value: %d.%06d (LED turned OFF)", val.val1, val.val2);
-	return 0;
 }
 
-static int cmd_sensor_info(const struct shell *sh, size_t argc, char **argv)
+void t_high_fn(void *p1, void *p2, void *p3)
 {
-	ARG_UNUSED(argc);
-	ARG_UNUSED(argv);
-
-	shell_print(sh, "Device name: %s", led_dev->name);
-	shell_print(sh, "Ready state: %s", device_is_ready(led_dev) ? "ready" : "not ready");
-	return 0;
+	while (1) {
+		LOG_INF("T_HIGH running");
+		k_sleep(K_MSEC(100));
+	}
 }
 
-static int cmd_sensor_set(const struct shell *sh, size_t argc, char **argv)
+void t_coop_fn(void *p1, void *p2, void *p3)
 {
-	int err = 0;
-	long val;
-	int ret;
-
-	if (argc < 2) {
-		shell_error(sh, "Missing argument. Usage: sensor set <0|1>");
-		return -EINVAL;
+	while (1) {
+		for (int i = 0; i < 5; i++) {
+			LOG_INF("T_COOP busy work iteration %d", i + 1);
+			k_busy_wait(50000);
+		}
+		k_yield();
 	}
-
-	val = shell_strtol(argv[1], 10, &err);
-	if (err != 0 || val < 0 || val > 1) {
-		shell_error(sh, "Invalid value '%s': must be 0 or 1", argv[1]);
-		return -EINVAL;
-	}
-
-	if (!device_is_ready(led_dev)) {
-		shell_error(sh, "Device %s not ready", led_dev->name);
-		return -ENODEV;
-	}
-
-	ret = led_sensor_set_invert(led_dev, (val == 1));
-	if (ret < 0) {
-		shell_error(sh, "led_sensor_set_invert failed (%d)", ret);
-		return ret;
-	}
-
-	shell_print(sh, "LED invert set to %ld", val);
-	return 0;
 }
 
-SHELL_STATIC_SUBCMD_SET_CREATE(sub_sensor,
-	SHELL_CMD_ARG(fetch, NULL, "Fetch sample (turns LED ON)", cmd_sensor_fetch, 1, 0),
-	SHELL_CMD_ARG(read, NULL, "Read channel value (turns LED OFF)", cmd_sensor_read, 1, 0),
-	SHELL_CMD_ARG(info, NULL, "Print device name and ready state", cmd_sensor_info, 1, 0),
-	SHELL_CMD_ARG(set, NULL, "Set LED polarity inversion <0|1>", cmd_sensor_set, 2, 0),
-	SHELL_SUBCMD_SET_END
-);
+/* Preemptive threads (priorities >= 0) */
+K_THREAD_DEFINE(t_low_id, STACK_SIZE, t_low_fn, NULL, NULL, NULL, 7, 0, 0);
+K_THREAD_DEFINE(t_med_id, STACK_SIZE, t_med_fn, NULL, NULL, NULL, 5, 0, 0);
+K_THREAD_DEFINE(t_high_id, STACK_SIZE, t_high_fn, NULL, NULL, NULL, 3, 0, 0);
 
-SHELL_CMD_REGISTER(sensor, &sub_sensor, "LED sensor commands", NULL);
-
-int main(void)
-{
-	return 0;
-}
+/* Cooperative thread (priority < 0) */
+K_THREAD_DEFINE(t_coop_id, STACK_SIZE, t_coop_fn, NULL, NULL, NULL, -1, 0, 0);
