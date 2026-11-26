@@ -353,3 +353,10 @@ void board_early_init_hook(void)
 	/* Set SystemCoreClock variable. */
 	SystemCoreClock = CLOCK_INIT_CORE_CLOCK;
 }
+#include <zephyr/sys/printk.h>
+static int my_board_post_init(void)
+{
+	printk("Board Initialized\n");
+	return 0;
+}
+SYS_INIT(my_board_post_init, APPLICATION, CONFIG_APPLICATION_INIT_PRIORITY);
