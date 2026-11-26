@@ -5,3 +5,4 @@ build
 .west
 deps
 build/
+twister-out/
