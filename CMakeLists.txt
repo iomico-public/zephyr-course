@@ -1,1 +1,2 @@
+zephyr_include_directories(include)
 add_subdirectory_ifdef(CONFIG_LED_SENSOR drivers/sensor/led_sensor)

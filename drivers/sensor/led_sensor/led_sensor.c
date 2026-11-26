@@ -5,6 +5,7 @@
 #include <zephyr/drivers/gpio.h>
 #include <zephyr/drivers/sensor.h>
 #include <zephyr/sys/printk.h>
+#include <drivers/led_sensor.h>
 
 struct led_sensor_config {
 	struct gpio_dt_spec led;
@@ -12,24 +13,40 @@ struct led_sensor_config {
 
 struct led_sensor_data {
 	bool led_on;
+	bool invert;
 };
+
+int led_sensor_set_invert(const struct device *dev, bool invert)
+{
+	struct led_sensor_data *data;
+
+	if (!device_is_ready(dev)) {
+		return -ENODEV;
+	}
+
+	data = dev->data;
+	data->invert = invert;
+	printk("[led_sensor] invert set to %s\n", invert ? "true" : "false");
+	return 0;
+}
 
 static int led_sensor_sample_fetch(const struct device *dev,
 				   enum sensor_channel chan)
 {
 	const struct led_sensor_config *cfg = dev->config;
 	struct led_sensor_data *data = dev->data;
+	int pin_val = data->invert ? 0 : 1;
 	int ret;
 
 	ARG_UNUSED(chan);
 
-	ret = gpio_pin_set_dt(&cfg->led, 1);
+	ret = gpio_pin_set_dt(&cfg->led, pin_val);
 	if (ret < 0) {
 		return ret;
 	}
 
 	data->led_on = true;
-	printk("[led_sensor] sample_fetch -> LED ON\n");
+	printk("[led_sensor] sample_fetch -> LED ON (pin=%d)\n", pin_val);
 	return 0;
 }
 
@@ -39,11 +56,12 @@ static int led_sensor_channel_get(const struct device *dev,
 {
 	const struct led_sensor_config *cfg = dev->config;
 	struct led_sensor_data *data = dev->data;
+	int pin_val = data->invert ? 1 : 0;
 	int ret;
 
 	ARG_UNUSED(chan);
 
-	ret = gpio_pin_set_dt(&cfg->led, 0);
+	ret = gpio_pin_set_dt(&cfg->led, pin_val);
 	if (ret < 0) {
 		return ret;
 	}
@@ -51,13 +69,17 @@ static int led_sensor_channel_get(const struct device *dev,
 	data->led_on = false;
 	val->val1 = 0;
 	val->val2 = 0;
-	printk("[led_sensor] channel_get  -> LED OFF\n");
+	printk("[led_sensor] channel_get  -> LED OFF (pin=%d)\n", pin_val);
 	return 0;
 }
 
 static int led_sensor_init(const struct device *dev)
 {
 	const struct led_sensor_config *cfg = dev->config;
+	struct led_sensor_data *data = dev->data;
+
+	data->led_on = false;
+	data->invert = false;
 
 	if (!gpio_is_ready_dt(&cfg->led)) {
 		return -ENODEV;
